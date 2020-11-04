@@ -15,7 +15,6 @@ Constitution for the United States of America)
   # Assume each entry in the list implements a length method that returns
   # a Fixnum.
   def longest(list)
-    # Your code goes here
     long_word = ""
     for idx in 0...list.length do
         if list[idx].length > long_word.length
@@ -29,9 +28,14 @@ Constitution for the United States of America)
   # Write ruby code that returns an array with all of the
   # entries from the list of words capitalized (i.e. 'foo' becomes 'Foo').
   def transform(words)
-    # Your code goes here
+    capitalized_words = []
+    for idx in 0...words.length do
+        capitalized_words << words[idx].capitalize
+    end
+    return capitalized_words
   end
 
+#   p transform(words)
 #################################################################
 # NUMBERS ARRAYS
 #################################################################
