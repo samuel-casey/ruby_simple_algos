@@ -47,20 +47,38 @@ mixed_nums = [0, 2, 4, 7]
   # Write ruby code that returns true if some of the entries
   # in the list of numbers are odd (test the three given number arrays)
   def some_odd(numbers)
-    # Your code goes here
+    numbers.any? {|number| number.odd?}
   end
+
+#   p some_odd(even_nums)
+#   p some_odd(odd_nums)
+#   p some_odd(mixed_nums)
 
   # Write ruby code that returns true if every entry in the
   # list of numbers are even (test the three given number arrays)
   def every_even(numbers)
-    # Your code goes here
+    numbers.all? {|number| number.even?}
   end
+
+#   p every_even(even_nums)
+#   p every_even(odd_nums)
+#   p every_even(mixed_nums)
 
   # Write ruby code that returns the sum total of all the numbers in the even_nums array
   def sum_evens(numbers)
-    # Your code goes here
+    numbers.reduce(0) {
+    |sum, num|
+    if num.even?
+        sum += num
+    else 
+        sum
+    end
+    }
   end
 
+  p sum_evens(even_nums)
+  p sum_evens(odd_nums)
+  p sum_evens(mixed_nums)
 #################################################################
 # STUDENTS ARRAY
 #################################################################
