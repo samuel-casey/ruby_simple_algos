@@ -76,9 +76,9 @@ mixed_nums = [0, 2, 4, 7]
     }
   end
 
-  p sum_evens(even_nums)
-  p sum_evens(odd_nums)
-  p sum_evens(mixed_nums)
+#   p sum_evens(even_nums)
+#   p sum_evens(odd_nums)
+#   p sum_evens(mixed_nums)
 #################################################################
 # STUDENTS ARRAY
 #################################################################
@@ -96,14 +96,43 @@ students = [
 ]
 
 # create a method called isMale that filters for a gender of 'M' and returns those elements
+is_male = lambda { 
+    |arr|
+    males = []
+    for i in 0...arr.length do
+        arr[i][:gender] == "M" ? males << arr[i] : nil
+    end
+    return males
+}
 
+
+# p is_male.call(students)
 # create a method called isFemale that filters for a gender of 'F' and returns those elements
+is_female = lambda do |arr|
+    females = []
+    for i in 0...arr.length do
+        arr[i][:gender] == "F" ? females << arr[i] : nil
+    end
+    return females
+end
 
+# p is_female.call(students)
 # create a method called filterGender that takes in the students array and a callback, which 
 # will be one of the previous isMale or isFemale methods.  It will return all elements that 
 # meet that condition
 
+def filter_gender(array, callback)
+    callback.call(array)
+end
+
+# p filter_gender(students, is_female)
+
 # create a variable called allMales that stores the result of calling filterGender and the isMale callback
+
+all_males = filter_gender(students, is_male)
+all_females = filter_gender(students, is_female)
+
+# p all_males, all_females
 
 # create a variable called allFemales that stores the result of calling filterGender and the isFemale callback
 
@@ -111,7 +140,7 @@ students = [
 # BONUS: DUPLICATE COUNT
 #################################################################
 
-colorsArr = [
+colors_arr = [
   { colors: ["blue", "purple", "red"] },
   { colors: ["black", "orange", "blue"] },
   { colors: ["green", "red", "blue"] }
@@ -123,3 +152,20 @@ colorsArr = [
 
 # Input: [ {colors: ['blue','purple','red']}, {colors: ['black','orange','blue']}, {colors: ['green','red', 'blue']} ]
 # Output: { blue: 3, purple: 1, red: 2, black: 1, orange: 1, green: 1 }
+
+def count_duplicates (array, key)
+    num_instances = {}
+    for idx in 0...array.length do
+        inner_array = array[idx][key]
+        for instance in 0...inner_array.length do
+            if num_instances[inner_array[instance]]
+                num_instances[inner_array[instance]] += 1
+            else
+                num_instances[inner_array[instance]] = 1
+            end
+        end
+    end
+    return num_instances
+end
+
+p count_duplicates(colors_arr, :colors)
